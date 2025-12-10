@@ -8,7 +8,7 @@ export default async function DashboardLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const supabase = await createClient();
+  const supabase = await createClient(); // Next.js 15 fix: await
   const {
     data: { user },
   } = await supabase.auth.getUser();
@@ -33,6 +33,13 @@ export default async function DashboardLayout({
             className="block px-3 py-2 hover:bg-slate-800 rounded"
           >
             新建任务
+          </Link>
+          {/* 新增入口 */}
+          <Link
+            href="/plans"
+            className="block px-3 py-2 hover:bg-slate-800 rounded text-blue-200"
+          >
+            方案管理
           </Link>
         </nav>
         <form
