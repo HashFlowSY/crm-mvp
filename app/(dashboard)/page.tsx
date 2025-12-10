@@ -4,7 +4,7 @@ import { AlertCircle } from "lucide-react";
 import { Task } from "@/types/database";
 
 export default async function DashboardPage() {
-  const supabase = createClient();
+  const supabase = await createClient();
 
   // 并行请求：联系人总数、待办任务数、销售额、今日任务
   const [contactsRes, tasksRes, salesRes, todayTasksRes] = await Promise.all([

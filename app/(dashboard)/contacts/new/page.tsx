@@ -8,7 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 // Server Action
 async function createContact(formData: FormData) {
   "use server";
-  const supabase = createClient();
+  const supabase = await createClient();
   const {
     data: { user },
   } = await supabase.auth.getUser();
@@ -54,7 +54,7 @@ async function createContact(formData: FormData) {
 }
 
 export default async function NewContactPage() {
-  const supabase = createClient();
+  const supabase = await createClient();
   const { data } = await supabase.from("plans").select("id, name, price");
   // 简单类型定义以避免 any
   const plans = (data || []) as { id: number; name: string; price: number }[];
